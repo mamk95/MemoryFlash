@@ -1,0 +1,3 @@
+Flashcard|PlaintextV1|
+#QUESTION#Japan
+#ANSWER#Tokyo

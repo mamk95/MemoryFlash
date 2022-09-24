@@ -1,0 +1,32 @@
+﻿@page "/group"
+
+@using Flashcards.Features.Flashcard.Component
+@using Flashcards.Features.Flashcard.Model
+@using Flashcards.Features.Flashcard.Repository
+@inject FlashcardRepository _flashcardRepo
+@inject NavigationManager _navigationManager
+
+<PageTitle>New group</PageTitle>
+
+<h1>New group</h1>
+
+<input class="form-control w-auto mb-2" type="text" placeholder="Name" @bind="GroupName" @bind:event="oninput" />
+
+<button class="btn btn-success" @onclick="submit">
+    <span class="oi oi-plus"></span>
+    Add
+</button>
+
+@code {
+    private string GroupName { get; set; }
+
+    private FlashcardGroup Group { get; set; }
+
+    private bool DisplayNewGroupView { get; set; } = false;
+
+    private void submit()
+    {
+        _flashcardRepo.CreateGroup(GroupName);
+        _navigationManager.NavigateTo($"/group/{GroupName}", true);
+    }
+}

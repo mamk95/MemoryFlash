@@ -1,0 +1,33 @@
+﻿@using Flashcards.Features.Flashcard.Model
+
+@if(EditMode)
+{
+    <FlashcardEditor Card="Card" OnSubmit="() => EditMode = false" />
+}
+else if (PlaintextCard != null)
+{
+    <FlashcardPlaintextV1Viewer card="PlaintextCard" />
+}
+
+@if (!EditMode)
+{
+    <button class="btn btn-sm btn-outline-light" @onclick="() => EditMode = true">
+        <span class="oi oi-pencil" aria-hidden="true"></span>
+        <span class="visually-hidden">Edit</span>
+    </button>
+}
+
+@code {
+    [Parameter]
+    public FlashcardCard Card { get; set; }
+
+    private bool EditMode { get; set; } = false;
+
+    private FlashcardPlaintextV1Card? PlaintextCard { get; set; }
+
+    protected async override Task OnParametersSetAsync()
+    {
+        if (Card is FlashcardPlaintextV1Card plaintext)
+            PlaintextCard = plaintext;
+    }
+}

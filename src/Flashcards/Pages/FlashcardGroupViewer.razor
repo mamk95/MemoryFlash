@@ -1,0 +1,52 @@
+﻿@page "/group/{GroupName}"
+
+@using Flashcards.Features.Flashcard.Component
+@using Flashcards.Features.Flashcard.Model
+@using Flashcards.Features.Flashcard.Repository
+@inject FlashcardRepository _flashcardRepo
+
+<PageTitle>@GroupName</PageTitle>
+
+<h1>@GroupName</h1>
+
+<div class="mb-4" style="display: flex; flex-direction: column; flex-wrap: wrap; align-items: center;">
+    @foreach(var card in Group?.Cards ?? new())
+    {
+        <FlashcardViewer Card="card" />
+
+        <hr style="width: 25%" />
+    }
+
+    @if (DisplayNewGroupView)
+    {
+        <FlashcardNew OnSubmit="addNewCard" />
+    }
+    else
+    {
+        <button class="btn btn-outline-light" @onclick="() => DisplayNewGroupView = true">
+            <span class="oi oi-plus"></span>
+            Add new
+        </button>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string GroupName { get; set; }
+
+    private FlashcardGroup Group { get; set; }
+
+    private bool DisplayNewGroupView { get; set; } = false;
+
+    protected async override Task OnParametersSetAsync()
+    {
+        Group = await _flashcardRepo.GetGroupWithCards(GroupName);
+    }
+
+    private async Task addNewCard(FlashcardCard card)
+    {
+        _flashcardRepo.CreateFlashcard(GroupName, card);
+        DisplayNewGroupView = false;
+        Group = await _flashcardRepo.GetGroupWithCards(GroupName);
+    }
+}

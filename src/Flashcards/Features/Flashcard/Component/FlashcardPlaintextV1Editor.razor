@@ -1,0 +1,16 @@
+﻿@using Flashcards.Features.Flashcard.Model
+
+<div style="display: flex; flex-direction: row; flex-wrap:wrap; justify-content: center;">
+    <FlashcardFrame TopLeftText="Q">
+        <textarea class="form-control" @bind="Card.Question" @bind:event="oninput" />
+    </FlashcardFrame>
+
+    <FlashcardFrame TopLeftText="A">
+        <textarea class="form-control" @bind="Card.Answer" @bind:event="oninput" />
+    </FlashcardFrame>
+</div>
+
+@code {
+    [Parameter]
+    public FlashcardPlaintextV1Card Card { get; set; }
+}

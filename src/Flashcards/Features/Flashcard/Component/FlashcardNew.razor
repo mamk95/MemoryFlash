@@ -1,0 +1,44 @@
+﻿@using Flashcards.Features.Flashcard.Model
+
+<div class="btn-group mb-2" role="group" aria-label="Select flashcard variant">
+    <input type="radio" class="btn-check" name="variant" id="variant-plain" autocomplete="off" @onchange="() => CardType = CardSelection.Plaintext" value=@CardSelection.Plaintext checked="@(CardType == @CardSelection.Plaintext)">
+    <label class="btn btn-outline-primary" for="variant-plain">Plain text</label>
+
+    <input type="radio" class="btn-check" name="variant" id="variant-rich" autocomplete="off" @onchange="() => CardType = CardSelection.Richtext" value=@CardSelection.Richtext checked="@(CardType == @CardSelection.Richtext)">
+    <label class="btn btn-outline-primary" for="variant-rich">Rich text</label>
+</div>
+
+@if (CardType == CardSelection.Plaintext)
+{
+    <FlashcardPlaintextV1Editor Card="NewPlaintextCard" />
+
+    <button class="btn btn-success mt-2" @onclick="() => submit(NewPlaintextCard)">
+        <span class="oi oi-check"></span>
+        Add
+    </button>
+}
+else if (CardType == CardSelection.Richtext)
+{
+    <div>Not implemented yet</div>
+}
+
+@code {
+    [Parameter]
+    public EventCallback<FlashcardCard> OnSubmit { get; set; }
+
+    private CardSelection CardType { get; set; } = CardSelection.Plaintext;
+
+    private FlashcardPlaintextV1Card NewPlaintextCard { get; set; } = new();
+
+    private void submit(FlashcardCard card)
+    {
+        OnSubmit.InvokeAsync(card);
+    }
+
+    private enum CardSelection
+    {
+        Unknown = 0,
+        Plaintext,
+        Richtext
+    }
+}

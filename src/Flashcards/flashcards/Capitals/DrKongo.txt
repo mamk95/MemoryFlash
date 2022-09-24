@@ -1,0 +1,3 @@
+Flashcard|PlaintextV1|
+#QUESTION#DR Kongo
+#ANSWER#Kinshasa

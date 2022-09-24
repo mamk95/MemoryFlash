@@ -1,0 +1,4 @@
+Flashcard|PlaintextV1|
+#QUESTION#China
+#ANSWER#Beijing
+Population: 21,542,000

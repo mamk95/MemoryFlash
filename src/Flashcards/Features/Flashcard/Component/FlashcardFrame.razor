@@ -1,0 +1,35 @@
+﻿@if (StartAsHidden)
+{
+    <a class="frame view-answer-link hidden" role="button" @onclick="() => StartAsHidden = false">
+        @if (TopLeftText != null)
+        {
+            <span class="top-left-text">@TopLeftText</span>
+        }
+
+        Click to see answer
+    </a>
+}
+else
+{
+    <span class="frame">
+        @if (TopLeftText != null)
+        {
+            <span class="top-left-text">@TopLeftText</span>
+        }
+
+        <span class="content">
+            @ChildContent
+        </span>
+    </span>
+}
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public bool StartAsHidden { get; set; }
+
+    [Parameter]
+    public string? TopLeftText { get; set; }
+}

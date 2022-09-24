@@ -1,0 +1,35 @@
+﻿@using Flashcards.Features.Flashcard.Model
+@using Flashcards.Features.Flashcard.Repository
+@inject FlashcardRepository _flashcardRepo
+
+@if (plaintextCard != null)
+{
+    <FlashcardPlaintextV1Editor Card="plaintextCard" />
+
+    <button class="btn btn-success" @onclick="() => submit(plaintextCard)">
+        <span class="oi oi-check"></span>
+        Update
+    </button>
+}
+
+@code {
+    [Parameter]
+    public FlashcardCard Card { get; set; }
+
+    [Parameter]
+    public EventCallback OnSubmit { get; set; }
+
+    private FlashcardPlaintextV1Card? plaintextCard { get; set; }
+
+    protected async override Task OnParametersSetAsync()
+    {
+        if (Card is FlashcardPlaintextV1Card plaintext)
+            plaintextCard = plaintext;
+    }
+
+    private async Task submit(FlashcardCard card)
+    {
+        await _flashcardRepo.EditFlashcard(card);
+        await OnSubmit.InvokeAsync();
+    }
+}

@@ -1,0 +1,11 @@
+﻿@using Flashcards.Features.Flashcard.Model
+
+<div style="display: flex; flex-direction: row; flex-wrap:wrap; justify-content: center;">
+    <FlashcardFrame TopLeftText="Q">@card.Question</FlashcardFrame>
+    <FlashcardFrame TopLeftText="A" StartAsHidden="true">@card.Answer</FlashcardFrame>
+</div>
+
+@code {
+    [Parameter]
+    public FlashcardPlaintextV1Card card { get; set; }
+}
