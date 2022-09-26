@@ -1,0 +1,5 @@
+Flashcard|MarkdownV1|
+#QUESTION#Egypt<br/>
+*(Arab Republic of Egypt)*
+#ANSWER#Cairo<br/>
+Population: **10,107,125**

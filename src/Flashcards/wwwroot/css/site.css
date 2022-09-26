@@ -56,3 +56,40 @@ a {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.markdown-editor-dark .EasyMDEContainer {
+    background-color: #2d3748 !important;
+}
+
+.markdown-editor-dark .CodeMirror, .markdown-editor-dark .editor-preview {
+    color: white !important;
+    border-color: #718096 !important;
+    background-color: #2d3748 !important;
+}
+
+.markdown-editor-dark .cm-s-easymde .CodeMirror-cursor {
+    border-color: #718096 !important;
+}
+
+.markdown-editor-dark .editor-toolbar button i {
+    color: white !important;
+}
+
+.markdown-editor-dark .editor-toolbar button.active, .markdown-editor-dark .editor-toolbar button:hover {
+    background-color: blue !important;
+    /* Fixes toolbar buttons from appearing as white when hovered or selected */
+}
+
+.markdown-editor-dark .editor-preview pre {
+    background-color: #333 !important;
+    /* This fixes code blocks in Markdown appearing with a white background */
+}
+
+.markdown-editor-dark .table {
+    /* The table button has class="table", which is a class Bootstrap is styling. This will try to undo that Bootstrap style */
+    width: inherit;
+    margin-bottom: inherit;
+    color: inherit;
+    vertical-align: inherit;
+    border-color: none;
+}

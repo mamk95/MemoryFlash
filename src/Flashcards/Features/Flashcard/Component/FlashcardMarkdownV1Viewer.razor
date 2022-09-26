@@ -1,0 +1,16 @@
+﻿@using Flashcards.Features.Flashcard.Model
+
+<div style="display: flex; flex-direction: row; flex-wrap:wrap; justify-content: center;">
+    <FlashcardFrame TopLeftText="Q">
+        <MarkdownDisplay markdown="@Card.Question" RemoveLastMarginBottom="@true" />
+    </FlashcardFrame>
+
+    <FlashcardFrame TopLeftText="A" StartAsHidden="true">
+        <MarkdownDisplay markdown="@Card.Answer" RemoveLastMarginBottom="@true" />
+    </FlashcardFrame>
+</div>
+
+@code {
+    [Parameter]
+    public FlashcardMarkdownV1Card Card { get; set; }
+}

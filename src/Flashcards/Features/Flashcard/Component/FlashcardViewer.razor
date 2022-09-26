@@ -8,6 +8,10 @@ else if (PlaintextCard != null)
 {
     <FlashcardPlaintextV1Viewer card="PlaintextCard" />
 }
+else if (MarkdownCard != null)
+{
+    <FlashcardMarkdownV1Viewer Card="MarkdownCard" />
+}
 
 @if (!EditMode)
 {
@@ -25,9 +29,18 @@ else if (PlaintextCard != null)
 
     private FlashcardPlaintextV1Card? PlaintextCard { get; set; }
 
+    private FlashcardMarkdownV1Card? MarkdownCard { get; set; }
+
     protected async override Task OnParametersSetAsync()
     {
+        // This component might be reused with the parameter changed, instead of creating a new instance of this component.
+        // Therefore we need to wipe the cards. If not, the plaintext card will always show because it's first in the HTML.
+        PlaintextCard = null;
+        MarkdownCard = null;
+
         if (Card is FlashcardPlaintextV1Card plaintext)
             PlaintextCard = plaintext;
+        else if (Card is FlashcardMarkdownV1Card markdown)
+            MarkdownCard = markdown;
     }
 }

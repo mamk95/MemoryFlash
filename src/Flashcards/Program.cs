@@ -1,6 +1,4 @@
 using Flashcards.Features.Flashcard.Repository;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 

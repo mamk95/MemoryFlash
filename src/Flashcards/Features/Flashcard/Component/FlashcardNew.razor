@@ -19,7 +19,12 @@
 }
 else if (CardType == CardSelection.Richtext)
 {
-    <div>Not implemented yet</div>
+    <FlashcardMarkdownV1Editor Card="NewMarkdownCard" />
+
+    <button class="btn btn-success mt-2" @onclick="() => submit(NewMarkdownCard)">
+        <span class="oi oi-check"></span>
+        Add
+    </button>
 }
 
 @code {
@@ -29,6 +34,8 @@ else if (CardType == CardSelection.Richtext)
     private CardSelection CardType { get; set; } = CardSelection.Plaintext;
 
     private FlashcardPlaintextV1Card NewPlaintextCard { get; set; } = new();
+
+    private FlashcardMarkdownV1Card NewMarkdownCard { get; set; } = new();
 
     private void submit(FlashcardCard card)
     {

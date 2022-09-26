@@ -11,6 +11,15 @@
         Update
     </button>
 }
+else if (markdownCard != null)
+{
+    <FlashcardMarkdownV1Editor Card="markdownCard" />
+
+    <button class="btn btn-success" @onclick="() => submit(markdownCard)">
+        <span class="oi oi-check"></span>
+        Update
+    </button>
+}
 
 @code {
     [Parameter]
@@ -21,10 +30,14 @@
 
     private FlashcardPlaintextV1Card? plaintextCard { get; set; }
 
+    private FlashcardMarkdownV1Card? markdownCard { get; set; }
+
     protected async override Task OnParametersSetAsync()
     {
         if (Card is FlashcardPlaintextV1Card plaintext)
             plaintextCard = plaintext;
+        else if (Card is FlashcardMarkdownV1Card markdown)
+            markdownCard = markdown;
     }
 
     private async Task submit(FlashcardCard card)

@@ -8,10 +8,6 @@
     min-width: 256px;
 }
 
-.content {
-    white-space: break-spaces;
-}
-
 .hidden {
     background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
     border-color: yellow;

@@ -101,10 +101,17 @@ public class FlashcardRepository
 
 				var contentWithoutFormat = await reader.ReadToEndAsync();
 
-				if (formatTags?.ElementAtOrDefault(1) == FlashcardPlaintextV1Card.FormatTag)
-					if (FlashcardPlaintextV1Card.TryParseFromFile(contentWithoutFormat, out var card))
-						cards.Add(card with { FileLocation = filePath });
-			});
+                if (formatTags?.ElementAtOrDefault(1) == FlashcardPlaintextV1Card.FormatTag)
+                {
+                    if (FlashcardPlaintextV1Card.TryParseFromFile(contentWithoutFormat, out var plaintext))
+                        cards.Add(plaintext with { FileLocation = filePath });
+                }
+                else if (formatTags?.ElementAtOrDefault(1) == FlashcardMarkdownV1Card.FormatTag)
+                {
+                    if (FlashcardMarkdownV1Card.TryParseFromFile(contentWithoutFormat, out var markdown))
+                        cards.Add(markdown with { FileLocation = filePath });
+                }
+            });
 
 		return cards;
 	}

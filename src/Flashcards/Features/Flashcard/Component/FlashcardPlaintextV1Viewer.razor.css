@@ -1,0 +1,10 @@
+﻿.plaintext-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+::deep .content {
+    white-space: break-spaces;
+}

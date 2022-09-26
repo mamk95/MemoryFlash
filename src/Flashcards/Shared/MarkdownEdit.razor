@@ -1,0 +1,43 @@
+﻿@inject IJSRuntime _jsRuntime
+
+<span class="markdown-editor-dark">
+    <textarea id="@uniqueMarkdownId" @bind="Value" />
+</span>
+
+@code {
+    private string _value = string.Empty;
+
+    [Parameter]
+    public string Value 
+    { 
+        get 
+        { 
+            return _value; 
+        } 
+        set 
+        {
+            if (_value == value) return;
+            _value = value; 
+            ValueChanged.InvokeAsync(value);
+        } 
+    }
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    // When displaying multiple of this edit component, we need a
+    // unique ID for the input/textarea/markdown field
+    private string uniqueMarkdownId = $"markdown{Guid.NewGuid()}";
+    
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Coverts the description <textarea> into a markdown editor
+            await _jsRuntime.InvokeAsync<IJSObjectReference>("import", "./js/easymde.2.18.0.min.js").AsTask();
+            await _jsRuntime.InvokeVoidAsync("textareaIdToMarkdownEditor", uniqueMarkdownId);
+        }
+    }
+}
+
+

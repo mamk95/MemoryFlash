@@ -1,0 +1,20 @@
+Flashcard|MarkdownV1|
+#QUESTION#![Bird](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Nebelkr%C3%A4he_Corvus_cornix%2C_Belvedere%2C_Wien.jpg/320px-Nebelkr%C3%A4he_Corvus_cornix%2C_Belvedere%2C_Wien.jpg)
+
+Isiwal/Wikimedia Commons, CC BY-SA 4.0<br />
+<https://creativecommons.org/licenses/by-sa/4.0>,<br />
+via Wikimedia Commons
+
+
+
+
+
+
+#ANSWER#Crow<br/>
+*Hooded crow*
+
+A few facts:
+- Eurasian bird species in the genus Corvus.
+- Similar in morphology and habits to the carrion crow.
+
+Source: [Wikipedia](https://en.wikipedia.org/wiki/Hooded_crow)

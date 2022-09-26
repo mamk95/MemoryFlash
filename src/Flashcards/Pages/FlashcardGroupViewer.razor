@@ -45,7 +45,7 @@
 
     private async Task addNewCard(FlashcardCard card)
     {
-        _flashcardRepo.CreateFlashcard(GroupName, card);
+        await _flashcardRepo.CreateFlashcard(GroupName, card);
         DisplayNewGroupView = false;
         Group = await _flashcardRepo.GetGroupWithCards(GroupName);
     }
