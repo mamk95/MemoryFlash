@@ -5,6 +5,7 @@ Selfhosted flashcard website
 ✅ v0.1.0: Plaintext flashcard support (read, create, edit)<br/>
 ✅ v0.2.0: Markdown flashcard support (read, create, edit)<br/>
 🟨 v0.3.0: Practice mode using randomization<br/>
+🟨 v0.3.1: Store statistics from practice mode randomization<br/>
 🟨 v0.4.0: Practice mode using spaced repetition<br/>
 🟨 v0.5.0: Delete option for flashcards<br/>
 🟨 v0.6.0: Login-screen for a single user<br/>
