@@ -15,6 +15,8 @@ public abstract record FlashcardCard
 
     public string Format { get; private init; }
 
+    public string UniqueId { get; set; }
+
     public string? FileLocation { get; set; }
 
     /// <returns>Returns the file content without format data, i.e. the file without the first line.</returns>

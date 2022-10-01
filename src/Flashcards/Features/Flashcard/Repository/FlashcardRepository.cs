@@ -56,7 +56,7 @@ public class FlashcardRepository
         var filename = Guid.NewGuid().ToString() + ".txt";
         var filepath = Path.Combine(_directory, groupName, filename);
 
-        var formatLine = $"Flashcard|{card.Format}|";
+        var formatLine = $"Flashcard|{card.Format}|{Guid.NewGuid()}";
         var fileContent = card.ToFileContent();
 
         await File.WriteAllTextAsync(filepath, formatLine + "\n" + fileContent);
@@ -73,7 +73,7 @@ public class FlashcardRepository
         if (card.FileLocation.Contains(_directory) != true)
             throw new ArgumentException("File location outside allowed area", nameof(card));
 
-        var formatLine = $"Flashcard|{card.Format}|";
+        var formatLine = $"Flashcard|{card.Format}|{card.UniqueId}";
         var fileContent = card.ToFileContent();
 
         await File.WriteAllTextAsync(card.FileLocation, formatLine + "\n" + fileContent);
@@ -94,9 +94,9 @@ public class FlashcardRepository
 				using var reader = new StreamReader(stream);
 
 				var line1 = await reader.ReadLineAsync();
-				var formatTags = line1?.Split('|');
+				var formatTags = line1?.Split('|'); // Flashcard|{Format}|{UniqueId/GUID}
 
-				if (formatTags?.FirstOrDefault() != "Flashcard")
+                if (formatTags?.FirstOrDefault() != "Flashcard")
 					return;
 
 				var contentWithoutFormat = await reader.ReadToEndAsync();
@@ -104,12 +104,12 @@ public class FlashcardRepository
                 if (formatTags?.ElementAtOrDefault(1) == FlashcardPlaintextV1Card.FormatTag)
                 {
                     if (FlashcardPlaintextV1Card.TryParseFromFile(contentWithoutFormat, out var plaintext))
-                        cards.Add(plaintext with { FileLocation = filePath });
+                        cards.Add(plaintext with { FileLocation = filePath, UniqueId = formatTags[2] });
                 }
                 else if (formatTags?.ElementAtOrDefault(1) == FlashcardMarkdownV1Card.FormatTag)
                 {
                     if (FlashcardMarkdownV1Card.TryParseFromFile(contentWithoutFormat, out var markdown))
-                        cards.Add(markdown with { FileLocation = filePath });
+                        cards.Add(markdown with { FileLocation = filePath, UniqueId = formatTags[2] });
                 }
             });
 
